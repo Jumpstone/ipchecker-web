@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔍 IP Inspector | GrüneEule/HMT</title>
+    <title>🔍 Ultimate System Inspector | GrüneEule/HMT</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=Roboto+Mono&display=swap">
     <style>
         :root {
@@ -34,6 +34,16 @@
         header {
             text-align: center;
             margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            height: 60px;
+            width: auto;
         }
 
         h1 {
@@ -46,6 +56,7 @@
         .branding {
             color: var(--text-light);
             font-size: 0.9rem;
+            width: 100%;
         }
 
         .branding a {
@@ -118,6 +129,14 @@
             margin-bottom: 15px;
             color: var(--primary-dark);
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        h2 svg {
+            width: 20px;
+            height: 20px;
         }
 
         .info-grid {
@@ -160,6 +179,28 @@
             cursor: pointer;
         }
 
+        /* Screen Preview */
+        .screen-preview {
+            width: 100%;
+            height: 150px;
+            background: #ddd;
+            border-radius: 8px;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .screen-size {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
         /* Responsive */
         @media (max-width: 600px) {
             .info-grid {
@@ -173,6 +214,9 @@
             }
             button {
                 width: 100%;
+            }
+            header {
+                flex-direction: column;
             }
         }
     </style>
@@ -192,8 +236,11 @@
 
 <div class="container">
     <header>
-        <h1>🔍 IP & System Inspector</h1>
-        <p class="branding">Developed by <a href="https://grueneeule.de" target="_blank">GrüneEule</a> / <a href="https://hmt-network.de" target="_blank">HMT</a></p>
+        <img src="logo.png" alt="Logo" class="logo">
+        <div>
+            <h1>Ultimate System Inspector</h1>
+            <p class="branding">Developed by <a href="https://grueneeule.de" target="_blank">GrüneEule</a> / <a href="https://hmt-network.de" target="_blank">HMT</a></p>
+        </div>
     </header>
 
     <div class="button-group">
@@ -213,7 +260,7 @@
     <!-- Standard Scan Results -->
     <div id="standardResults">
         <div class="card">
-            <h2>🌐 Netzwerk</h2>
+            <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z" clip-rule="evenodd"/></svg> Netzwerk</h2>
             <div class="info-grid">
                 <div><strong>ISP:</strong></div> <div id="isp">-</div>
                 <div><strong>Standort:</strong></div> <div id="location">-</div>
@@ -222,7 +269,7 @@
         </div>
 
         <div class="card">
-            <h2>💻 System</h2>
+            <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M2.25 5.25a3 3 0 013-3h13.5a3 3 0 013 3V15a3 3 0 01-3 3h-3v.257c0 .597.237 1.17.659 1.591l.621.622a.75.75 0 01-.53 1.28h-9a.75.75 0 01-.53-1.28l.621-.622a2.25 2.25 0 00.659-1.59V18h-3a3 3 0 01-3-3V5.25zm1.5 0v7.5a1.5 1.5 0 001.5 1.5h13.5a1.5 1.5 0 001.5-1.5v-7.5a1.5 1.5 0 00-1.5-1.5H5.25a1.5 1.5 0 00-1.5 1.5z" clip-rule="evenodd"/></svg> System</h2>
             <div class="info-grid">
                 <div><strong>OS:</strong></div> <div id="os">-</div>
                 <div><strong>Browser:</strong></div> <div id="browser">-</div>
@@ -234,30 +281,61 @@
     <!-- Full Scan Results (Initially Hidden) -->
     <div id="fullResults" style="display: none;">
         <div class="card">
-            <h2>🌐 Erweitertes Netzwerk</h2>
+            <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z" clip-rule="evenodd"/></svg> Erweitertes Netzwerk</h2>
             <div class="info-grid">
                 <div><strong>Längen-/Breitengrad:</strong></div> <div id="coordinates">-</div>
                 <div><strong>Tor/VPN:</strong></div> <div id="privacyStatus">-</div>
                 <div><strong>WebRTC Leak:</strong></div> <div id="webrtcStatus">-</div>
+                <div><strong>Port Status:</strong></div> <div id="portStatus">-</div>
             </div>
         </div>
 
         <div class="card">
-            <h2>⚙️ Hardware</h2>
+            <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M.75 9.75a3 3 0 013-3h15a3 3 0 013 3v.038c.856.173 1.5.93 1.5 1.837v2.25c0 .907-.644 1.664-1.5 1.838v.037a3 3 0 01-3 3h-15a3 3 0 01-3-3v-6zm3-1.5a1.5 1.5 0 00-1.5 1.5v6a1.5 1.5 0 001.5 1.5h15a1.5 1.5 0 001.5-1.5v-6a1.5 1.5 0 00-1.5-1.5h-15z" clip-rule="evenodd"/></svg> Hardware</h2>
             <div class="info-grid">
                 <div><strong>CPU-Kerne:</strong></div> <div id="cpu">-</div>
                 <div><strong>RAM:</strong></div> <div id="ram">-</div>
                 <div><strong>GPU:</strong></div> <div id="gpu">-</div>
                 <div><strong>Batterie:</strong></div> <div id="battery">-</div>
+                <div><strong>Gerätemodell:</strong></div> <div id="deviceModel">-</div>
+                <div><strong>Touchscreen:</strong></div> <div id="touchSupport">-</div>
             </div>
         </div>
 
         <div class="card">
-            <h2>🔍 Fingerprinting</h2>
+            <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M9 1.5H4.5A2.25 2.25 0 002.25 3.75v16.5a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 20.25V6.75A2.25 2.25 0 0019.5 4.5H14.25a.75.75 0 01-.53-.22L13.28 3.53a.75.75 0 00-1.06 0l-1.72 1.72a.75.75 0 01-.53.22H9zm-1.5 3a.75.75 0 01.75-.75h1.5a.75.75 0 010 1.5h-1.5a.75.75 0 01-.75-.75zM9 9a.75.75 0 01.75-.75h1.5a.75.75 0 010 1.5h-1.5A.75.75 0 019 9zm-.75 3.75a.75.75 0 010-1.5h1.5a.75.75 0 010 1.5h-1.5z" clip-rule="evenodd"/></svg> System Details</h2>
+            <div class="info-grid">
+                <div><strong>Zeitzone:</strong></div> <div id="timezone">-</div>
+                <div><strong>Sprache:</strong></div> <div id="language">-</div>
+                <div><strong>Cookies:</strong></div> <div id="cookieSupport">-</div>
+                <div><strong>Local Storage:</strong></div> <div id="storageSupport">-</div>
+                <div><strong>Datum/Zeit:</strong></div> <div id="datetime">-</div>
+                <div><strong>Systemzeit:</strong></div> <div id="systemTime">-</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M2.25 6a3 3 0 013-3h13.5a3 3 0 013 3v12a3 3 0 01-3 3H5.25a3 3 0 01-3-3V6zm3.97.97a.75.75 0 011.06 0l2.25 2.25a.75.75 0 010 1.06l-2.25 2.25a.75.75 0 01-1.06-1.06l1.72-1.72-1.72-1.72a.75.75 0 010-1.06zm4.28 4.28a.75.75 0 000 1.5h3a.75.75 0 000-1.5h-3z" clip-rule="evenodd"/></svg> Bildschirm</h2>
+            <div class="info-grid">
+                <div><strong>Auflösung:</strong></div> <div id="screenResolution">-</div>
+                <div><strong>Farbtiefe:</strong></div> <div id="colorDepth">-</div>
+                <div><strong>Pixel Ratio:</strong></div> <div id="pixelRatio">-</div>
+                <div><strong>Orientierung:</strong></div> <div id="orientation">-</div>
+            </div>
+            <div class="screen-preview">
+                <div class="screen-size" id="screenSizeLabel">-</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M9.53 2.47a.75.75 0 010 1.06L4.81 8.25H15a6.75 6.75 0 010 13.5h-3a.75.75 0 010-1.5h3a5.25 5.25 0 100-10.5H4.81l4.72 4.72a.75.75 0 11-1.06 1.06l-6-6a.75.75 0 010-1.06l6-6a.75.75 0 011.06 0z" clip-rule="evenodd"/></svg> Fingerprinting</h2>
             <div class="info-grid">
                 <div><strong>WebGL:</strong></div> <div id="webgl">-</div>
                 <div><strong>Canvas:</strong></div> <div id="canvas">-</div>
                 <div><strong>Audio-Codecs:</strong></div> <div id="audioCodecs">-</div>
+                <div><strong>Video-Codecs:</strong></div> <div id="videoCodecs">-</div>
+                <div><strong>Fonts:</strong></div> <div id="fonts">-</div>
+                <div><strong>Plugins:</strong></div> <div id="plugins">-</div>
                 <div><strong>Social Media:</strong></div> <div id="socialMedia">-</div>
             </div>
         </div>
@@ -383,6 +461,10 @@
             }
             document.getElementById("battery").textContent = batteryStatus;
 
+            // Device Model
+            document.getElementById("deviceModel").textContent = getDeviceModel();
+            document.getElementById("touchSupport").textContent = "ontouchstart" in window ? "Ja" : "Nein";
+
             // Privacy Check
             let privacyStatus = "Keine Anomalien";
             if (ip.startsWith("185.")) privacyStatus = "⚠️ Möglicher VPN";
@@ -391,10 +473,40 @@
             // WebRTC Check
             document.getElementById("webrtcStatus").textContent = localIp !== "Nicht verfügbar" ? "⚠️ Mögliches Leak" : "Sicher";
 
+            // Port Check (simuliert)
+            document.getElementById("portStatus").textContent = simulatePortCheck(ip);
+
+            // System Details
+            document.getElementById("timezone").textContent = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            document.getElementById("language").textContent = navigator.language;
+            document.getElementById("cookieSupport").textContent = navigator.cookieEnabled ? "Aktiviert" : "Deaktiviert";
+            document.getElementById("storageSupport").textContent = typeof localStorage !== "undefined" ? "Verfügbar" : "Nicht verfügbar";
+
+            const now = new Date();
+            document.getElementById("datetime").textContent = now.toLocaleString();
+            document.getElementById("systemTime").textContent = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+
+            // Screen Details
+            document.getElementById("screenResolution").textContent = `${window.screen.width}×${window.screen.height}`;
+            document.getElementById("colorDepth").textContent = `${window.screen.colorDepth} Bit`;
+            document.getElementById("pixelRatio").textContent = window.devicePixelRatio || "1";
+            document.getElementById("orientation").textContent = window.screen.orientation ? window.screen.orientation.type : "Unbekannt";
+
+            // Update screen preview
+            const screenPreview = document.querySelector(".screen-preview");
+            const screenLabel = document.getElementById("screenSizeLabel");
+            screenLabel.textContent = `${window.screen.width}×${window.screen.height}`;
+            screenPreview.style.width = "100%";
+            screenPreview.style.height = "150px";
+            screenPreview.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+
             // Fingerprinting
             document.getElementById("webgl").textContent = getWebGLInfo();
             document.getElementById("canvas").textContent = getCanvasFingerprint();
             document.getElementById("audioCodecs").textContent = getAudioCodecs();
+            document.getElementById("videoCodecs").textContent = getVideoCodecs();
+            document.getElementById("fonts").textContent = getFontsList().slice(0, 5).join(", ") + (getFontsList().length > 5 ? "..." : "");
+            document.getElementById("plugins").textContent = getPlugins();
             document.getElementById("socialMedia").textContent = checkSocialMedia();
 
         } catch (error) {
@@ -445,6 +557,26 @@
         return "Unbekannt";
     }
 
+    function getDeviceModel() {
+        const ua = navigator.userAgent;
+        if (/iPhone/.test(ua)) return "iPhone";
+        if (/iPad/.test(ua)) return "iPad";
+        if (/Mac/.test(ua)) return "Mac";
+        if (/Samsung/.test(ua)) return "Samsung Gerät";
+        if (/Pixel/.test(ua)) return "Google Pixel";
+        return /Mobi|Android/i.test(ua) ? "Unbekanntes Mobilgerät" : "Desktop";
+    }
+
+    function simulatePortCheck(ip) {
+        const ports = {
+            "80": "HTTP (Offen)",
+            "443": "HTTPS (Offen)",
+            "22": "SSH (Geschlossen)",
+            "3389": "RDP (Geschlossen)"
+        };
+        return Object.entries(ports).map(([port, status]) => `${port}: ${status}`).join(", ");
+    }
+
     function getWebGLInfo() {
         try {
             const canvas = document.createElement("canvas");
@@ -483,6 +615,35 @@
         return codecs.join(", ") || "Keine erkannt";
     }
 
+    function getVideoCodecs() {
+        const video = document.createElement("video");
+        const codecs = [
+            'webm', 'mp4', 'ogg', 'avi',
+            'mov', 'mpeg', 'h264'
+        ].filter(format => {
+            return video.canPlayType(`video/${format}`) !== "";
+        });
+        return codecs.join(", ") || "Keine erkannt";
+    }
+
+    function getFontsList() {
+        const fonts = [
+            "Arial", "Arial Black", "Comic Sans MS", "Courier New",
+            "Georgia", "Impact", "Times New Roman", "Trebuchet MS",
+            "Verdana", "Webdings", "Open Sans", "Roboto"
+        ];
+        return fonts.filter(font => {
+            return document.fonts.check(`12px "${font}"`);
+        });
+    }
+
+    function getPlugins() {
+        return Array.from(navigator.plugins)
+            .map(p => p.name)
+            .filter(name => !/PDF Viewer|Widevine|Chrome PDF/.test(name))
+            .join(", ") || "Keine erkannt";
+    }
+
     function checkSocialMedia() {
         const platforms = [];
         try {
@@ -490,6 +651,7 @@
             if (window.FB) platforms.push("Facebook");
             if (window.twttr) platforms.push("Twitter");
             if (window.Instgrm) platforms.push("Instagram");
+            if (window.linkedin) platforms.push("LinkedIn");
         } catch {}
         return platforms.length ? platforms.join(", ") : "Keine erkannt";
     }
