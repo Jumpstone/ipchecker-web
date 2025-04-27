@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔍 Ultimate System Inspector | GrüneEule/HMT</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>🛠️ Ultimate System Inspector</h1>
+        <p class="branding">Developed by <a href="https://grueneeule.de" target="_blank">GrüneEule</a> / <a href="https://hmt-network.de" target="_blank">HMT</a></p>
+    </header>
+
+    <button id="scanBtn">💡 Jetzt ALLES scannen</button>
+
+    <!-- IP Highlight -->
+    <div class="card highlight-card">
+        <div class="ipv4-display" id="ipv4">-</div>
+        <div class="ip-subtext">
+            <span id="ipv6">IPv6: -</span> |
+            <span id="localIp">Lokal: -</span>
+        </div>
+    </div>
+
+    <!-- Karten für jede Kategorie -->
+    <div class="card">
+        <h2>🌐 Netzwerk</h2>
+        <div class="info-grid">
+            <div><strong>ISP:</strong></div> <div id="isp">-</div>
+            <div><strong>Standort:</strong></div> <div id="location">-</div>
+            <div><strong>Längen-/Breitengrad:</strong></div> <div id="coordinates">-</div>
+            <div><strong>Netzwerk-Typ:</strong></div> <div id="connection">-</div>
+            <div><strong>Tor/VPN:</strong></div> <div id="privacyStatus">-</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>💻 Hardware</h2>
+        <div class="info-grid">
+            <div><strong>CPU-Kerne:</strong></div> <div id="cpu">-</div>
+            <div><strong>RAM:</strong></div> <div id="ram">-</div>
+            <div><strong>GPU:</strong></div> <div id="gpu">-</div>
+            <div><strong>Batterie:</strong></div> <div id="battery">-</div>
+            <div><strong>Gerät:</strong></div> <div id="deviceModel">-</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>🔧 System</h2>
+        <div class="info-grid">
+            <div><strong>OS:</strong></div> <div id="os">-</div>
+            <div><strong>Browser:</strong></div> <div id="browser">-</div>
+            <div><strong>Bildschirm:</strong></div> <div id="screen">-</div>
+            <div><strong>Farbtiefe:</strong></div> <div id="colorDepth">-</div>
+            <div><strong>Zeitzone:</strong></div> <div id="timezone">-</div>
+            <div><strong>Sprache:</strong></div> <div id="language">-</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>📡 Erweiterte Erkennung</h2>
+        <div class="info-grid">
+            <div><strong>WebGL-Fingerprint:</strong></div> <div id="webgl">-</div>
+            <div><strong>Audio-Codecs:</strong></div> <div id="audioCodecs">-</div>
+            <div><strong>Video-Codecs:</strong></div> <div id="videoCodecs">-</div>
+            <div><strong>Plugins:</strong></div> <div id="plugins">-</div>
+            <div><strong>Social Media Logins:</strong></div> <div id="socialMedia">-</div>
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
